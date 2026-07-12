@@ -26,7 +26,7 @@
 /* --- Reset --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html   { scroll-behavior: smooth; font-size: 16px; }
-body   { font-family: 'Inter', system-ui, sans-serif; color: var(--body-text); background: #fff; line-height: 1.72; -webkit-font-smoothing: antialiased; }
+body   { font-family: 'Inter', system-ui, sans-serif; color: var(--body-text); background: #fff; line-height: 1.72; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 img    { max-width: 100%; height: auto; display: block; }
 a      { text-decoration: none; color: inherit; }
 ul     { list-style: none; padding: 0; margin: 0; }
@@ -184,18 +184,46 @@ section { padding: 88px 0; }
 .mobile-nav {
   display: none; position: fixed; inset: 0;
   background: var(--navy); z-index: 999;
-  flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 0; padding: 32px 24px;
+  overflow-y: auto;
 }
 .mobile-nav.active { display: flex; }
+
+.mobile-nav-links {
+  display: flex; flex-direction: column; align-items: center;
+  width: 100%; gap: 4px; margin-bottom: 24px;
+}
 .mobile-nav a {
-  font-size: 1.2rem; font-weight: 600; color: rgba(255,255,255,.8);
-  padding: 14px 40px; border-radius: 8px; transition: all .2s; width: 100%; text-align: center;
+  font-size: 1.15rem; font-weight: 600; color: rgba(255,255,255,.85);
+  padding: 13px 32px; border-radius: 10px; transition: all .2s;
+  width: 100%; max-width: 320px; text-align: center; display: block;
 }
-.mobile-nav a:hover { color: #fff; background: rgba(255,255,255,.07); }
+.mobile-nav a:hover,
+.mobile-nav a:active { color: #fff; background: rgba(255,255,255,.1); }
+
+.mobile-nav-cta {
+  background: var(--green) !important;
+  color: #fff !important;
+  font-size: 1rem !important;
+  padding: 14px 40px !important;
+  border-radius: 50px !important;
+  font-weight: 700 !important;
+  width: auto !important;
+  max-width: none !important;
+  margin-top: 8px;
+}
+.mobile-nav-cta:hover { background: var(--green-hover) !important; }
+
 .mobile-nav-close {
-  position: absolute; top: 24px; right: 24px;
-  background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer;
+  position: absolute; top: 20px; right: 20px;
+  background: rgba(255,255,255,.1); border: none;
+  color: #fff; font-size: 1.2rem; cursor: pointer;
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
 }
+.mobile-nav-close:hover { background: rgba(255,255,255,.2); }
 
 /* ==============================================
    HERO
@@ -994,9 +1022,11 @@ section { padding: 88px 0; }
 
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .contact-section { padding: 64px 0; }
 
-  .pd-grid { grid-template-columns: 1fr; gap: 32px; }
-  .pd-section.pd-alt .pd-img-col { order: -1; }
+  /* All program sections: image always first on mobile */
+  .pd-grid { grid-template-columns: 1fr; gap: 28px; }
+  .pd-img-col { order: -1; }
 
   .about-img-wrap img { height: 360px; }
   .about-badge { bottom: -14px; right: 12px; }
@@ -1006,24 +1036,26 @@ section { padding: 88px 0; }
   .stats-row { grid-template-columns: repeat(2,1fr); }
   .stat-box { border-bottom: 1px solid var(--border); }
 
-  .sch-list-header, .sch-list-item { grid-template-columns: 40px 1fr 140px 80px; }
+  .sch-list-header, .sch-list-item { grid-template-columns: 40px 1fr 160px 80px; }
 
   .pd-section { padding: 56px 0; }
   .pd-two-col { grid-template-columns: 1fr; gap: 16px; }
   .pd-checklist-grid { grid-template-columns: 1fr; }
-  .schools-section { padding: 60px 0 68px; }
   .donate-section { padding: 60px 0 68px; }
 
   .donate-tracks { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* Partners */
+  .partners-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 767px) {
   section { padding: 52px 0; }
 
   .pd-section { padding: 48px 0; }
-  .schools-section { padding: 52px 0 60px; }
   .donate-section { padding: 52px 0 60px; }
+  .contact-section { padding: 52px 0; }
 
   .prog-cards { grid-template-columns: 1fr; gap: 16px; }
   .impact-grid { grid-template-columns: repeat(2,1fr); }
@@ -1036,9 +1068,17 @@ section { padding: 88px 0; }
   .d-cta-btns { flex-direction: column; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-bar { flex-direction: column; text-align: center; }
-  .f-row { grid-template-columns: 1fr; }
   .hero-h1 { letter-spacing: -.01em; }
-  .hero-btns { flex-direction: column; align-items: center; }
+  .hero-btns { flex-direction: column; align-items: stretch; }
+  .hero-btns a { justify-content: center; }
+
+  /* Contact info rows on mobile */
+  .contact-info-row { padding: 18px 20px; }
+  .contact-left h2 { font-size: 1.8rem; }
+
+  /* Schools list: hide province */
+  .sch-list-header, .sch-list-item { grid-template-columns: 36px 1fr 130px; }
+  .sch-prov { display: none; }
 }
 
 @media (max-width: 480px) {
@@ -1047,14 +1087,30 @@ section { padding: 88px 0; }
 
   .prog-cards { grid-template-columns: 1fr; }
 
-  .pd-section { padding: 40px 0; }
-  .schools-section { padding: 44px 0 52px; }
-  .donate-section { padding: 44px 0 52px; }
+  .pd-section { padding: 36px 0; }
+  .donate-section { padding: 40px 0 48px; }
+  .contact-section { padding: 44px 0; }
 
-  .sch-list-header, .sch-list-item { grid-template-columns: 36px 1fr 120px; }
-  .sch-prov { display: none; }
+  /* Schools list: hide district too, only # + name */
+  .sch-list-header, .sch-list-item { grid-template-columns: 36px 1fr; }
+  .sch-dist, .sch-prov { display: none; }
+  .sch-list-header span:nth-child(3),
+  .sch-list-header span:nth-child(4) { display: none; }
+
   .d-track-head { flex-direction: column; gap: 8px; }
   .offer-grid { grid-template-columns: 1fr; }
   .stats-row { grid-template-columns: 1fr 1fr; }
   .impact-grid { grid-template-columns: 1fr 1fr; }
+
+  .contact-info-row { padding: 16px; gap: 12px; }
+  .contact-info-icon { width: 38px; height: 38px; font-size: .95rem; }
+
+  .involved-card { padding: 24px 20px 20px; }
+  .partner-chips { gap: 6px; }
+  .partner-chip { font-size: .78rem; padding: 5px 10px; }
+
+  .tag-pills { gap: 6px; }
+  .pill { font-size: .75rem; padding: 4px 10px; }
+
+  .wa-float { bottom: 20px; right: 20px; width: 52px; height: 52px; font-size: 1.45rem; }
 }

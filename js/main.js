@@ -17,10 +17,12 @@ function handleScroll() {
 
   // Scroll-to-top button
   const scrollTop = document.getElementById('scrollTop');
-  if (window.scrollY > 500) {
-    scrollTop.classList.add('show');
-  } else {
-    scrollTop.classList.remove('show');
+  if (scrollTop) {
+    if (window.scrollY > 500) {
+      scrollTop.classList.add('show');
+    } else {
+      scrollTop.classList.remove('show');
+    }
   }
 }
 

@@ -1026,9 +1026,8 @@ section { padding: 88px 0; }
   .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
   .contact-section { padding: 64px 0; }
 
-  /* All program sections: image always first on mobile */
+  /* All program sections: text first, image below on mobile */
   .pd-grid { grid-template-columns: 1fr; gap: 28px; }
-  .pd-img-col { order: -1; }
 
   .about-img-wrap img { height: 360px; }
   .about-badge { bottom: -14px; right: 12px; }

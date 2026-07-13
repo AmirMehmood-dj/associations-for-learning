@@ -163,6 +163,62 @@ if (contactForm) {
   });
 }
 
+/* ---------- Volunteer Modal ---------- */
+const volunteerModal   = document.getElementById('volunteerModal');
+const openVolBtn       = document.getElementById('openVolunteerModal');
+const closeVolBtn      = document.getElementById('closeVolunteerModal');
+const volunteerForm    = document.getElementById('volunteerForm');
+const volSuccess       = document.getElementById('volSuccess');
+
+function openVolModal() {
+  volunteerModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVolModal() {
+  volunteerModal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+if (openVolBtn)  openVolBtn.addEventListener('click', openVolModal);
+if (closeVolBtn) closeVolBtn.addEventListener('click', closeVolModal);
+
+if (volunteerModal) {
+  volunteerModal.addEventListener('click', function (e) {
+    if (e.target === volunteerModal) closeVolModal();
+  });
+}
+
+if (volunteerForm) {
+  volunteerForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const btn = this.querySelector('.vol-submit');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        volunteerForm.style.display = 'none';
+        volSuccess.style.display = 'block';
+        setTimeout(closeVolModal, 3000);
+      } else {
+        btn.textContent = 'Submit Application';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again.');
+      }
+    } catch {
+      btn.textContent = 'Submit Application';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
+  });
+}
+
 /* ---------- Smooth scroll for internal anchors ---------- */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {

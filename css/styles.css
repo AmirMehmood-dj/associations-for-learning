@@ -1093,11 +1093,11 @@ section { padding: 88px 0; }
   .donate-section { padding: 40px 0 48px; }
   .contact-section { padding: 44px 0; }
 
-  /* Schools list: hide district too, only # + name */
-  .sch-list-header, .sch-list-item { grid-template-columns: 36px 1fr; }
-  .sch-dist, .sch-prov { display: none; }
-  .sch-list-header span:nth-child(3),
+  /* Schools list: # + name + district (hide province only) */
+  .sch-list-header, .sch-list-item { grid-template-columns: 36px 1fr 100px; }
+  .sch-prov { display: none; }
   .sch-list-header span:nth-child(4) { display: none; }
+  .sch-dist { font-size: .78rem; }
 
   .d-track-head { flex-direction: column; gap: 8px; }
   .offer-grid { grid-template-columns: 1fr; }

@@ -25,7 +25,7 @@
 
 /* --- Reset --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html   { scroll-behavior: smooth; font-size: 16px; }
+html   { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 body   { font-family: 'Inter', system-ui, sans-serif; font-weight: 400; color: var(--body-text); background: #fff; line-height: 1.72; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 img    { max-width: 100%; height: auto; display: block; }
 a      { text-decoration: none; color: inherit; }
@@ -1036,6 +1036,9 @@ section { padding: 88px 0; }
   .impact-grid { grid-template-columns: repeat(2,1fr); }
   .stats-row { grid-template-columns: repeat(2,1fr); }
   .stat-box { border-bottom: 1px solid var(--border); }
+  .cs-wrap { grid-template-columns: 1fr 1fr; }
+  .involved-grid { grid-template-columns: 1fr 1fr; }
+  .offer-grid { grid-template-columns: 1fr 1fr; }
 
   .sch-list-header, .sch-list-item { grid-template-columns: 40px 1fr 160px 80px; }
 
@@ -1083,7 +1086,7 @@ section { padding: 88px 0; }
 }
 
 @media (max-width: 480px) {
-  .nav-logo-img { height: 40px; }
+  .nav-logo-img { height: 40px; max-width: 160px; }
   .footer-logo-img { height: 40px; }
 
   .prog-cards { grid-template-columns: 1fr; }
@@ -1093,10 +1096,10 @@ section { padding: 88px 0; }
   .contact-section { padding: 44px 0; }
 
   /* Schools list: # + name + district (hide province only) */
-  .sch-list-header, .sch-list-item { grid-template-columns: 36px 1fr 100px; }
+  .sch-list-header, .sch-list-item { grid-template-columns: 28px 1fr 80px; }
   .sch-prov { display: none; }
   .sch-list-header span:nth-child(4) { display: none; }
-  .sch-dist { font-size: .78rem; }
+  .sch-dist { font-size: .75rem; }
 
   .d-track-head { flex-direction: column; gap: 8px; }
   .offer-grid { grid-template-columns: 1fr; }
@@ -1114,4 +1117,6 @@ section { padding: 88px 0; }
   .pill { font-size: .75rem; padding: 4px 10px; }
 
   .wa-float { bottom: 20px; right: 20px; width: 52px; height: 52px; font-size: 1.45rem; }
+  .hero-content { padding: 36px 0; }
+  .contact-wrap { gap: 24px; }
 }

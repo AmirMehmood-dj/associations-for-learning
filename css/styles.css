@@ -349,7 +349,7 @@ section { padding: 88px 0; }
 }
 
 .about-text { padding-bottom: 20px; }
-.about-text .lead { font-size: 1.05rem; color: var(--body-text); line-height: 1.8; margin-bottom: 16px; }
+.about-text .lead { font-size: 1rem; color: var(--body-text); line-height: 1.8; margin-bottom: 16px; }
 
 .vm-wrap {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -503,7 +503,7 @@ section { padding: 88px 0; }
 
 /* Content column */
 .pd-content h2 { font-size: clamp(1.3rem, 2.2vw, 1.85rem); margin-bottom: 6px; }
-.pd-content p  { font-size: .92rem; line-height: 1.78; }
+.pd-content p  { font-size: 1rem; line-height: 1.8; color: var(--body-text); }
 
 .pd-sub-label {
   font-size: .72rem; font-weight: 700; text-transform: uppercase;
@@ -550,7 +550,7 @@ section { padding: 88px 0; }
 }
 .checklist li {
   display: flex; align-items: flex-start; gap: 10px;
-  font-size: .9rem; color: var(--body-text); line-height: 1.65;
+  font-size: 1rem; color: var(--body-text); line-height: 1.8;
 }
 .checklist li i { color: var(--green); font-size: .88rem; margin-top: 2px; flex-shrink: 0; }
 

@@ -205,6 +205,21 @@ if (volunteerForm) {
       if (res.ok) {
         volunteerForm.style.display = 'none';
         volSuccess.style.display = 'block';
+
+        // Also send to WhatsApp
+        const fd = new FormData(volunteerForm);
+        const msg =
+          'New Volunteer Application\n\n' +
+          'Name: '            + (fd.get('name')             || '') + '\n' +
+          'Email: '           + (fd.get('email')            || '') + '\n' +
+          'Phone: '           + (fd.get('phone')            || '') + '\n' +
+          'City: '            + (fd.get('city')             || '') + '\n' +
+          'Qualification: '   + (fd.get('qualification')    || '') + '\n' +
+          'Subjects: '        + (fd.get('subjects')         || '') + '\n' +
+          'Area of Interest: '+ (fd.get('area_of_interest') || '') + '\n' +
+          'Message: '         + (fd.get('message')          || '');
+        window.open('https://wa.me/923102559333?text=' + encodeURIComponent(msg), '_blank');
+
         setTimeout(closeVolModal, 3000);
       } else {
         btn.textContent = 'Submit Application';
